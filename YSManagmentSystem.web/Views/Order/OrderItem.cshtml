@@ -1,0 +1,94 @@
+﻿@model IEnumerable<YSManagmentSystem.Domain.Order.OrderItemList>
+@{
+    ViewData["Title"] = "OrderItem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<h1>Order Item List</h1>
+<div class="container">
+    <div style="width:90%; margin:0 auto" class="tablecontainer">
+    <a type="button" class="btn btn-primary" href="/Order/AddOrderItem?id=@ViewBag.Id "> <i class="fa fa-plus"></i> Add Order </a>
+</div>
+</div>*@
+
+<div class="container-fluid">
+ <div class="card text-center">
+  <div class="card-body">
+    <div class="row">
+     <div class="col-md-6">
+        <h6>Order Number : @ViewBag.ONum</h6>
+     </div>
+    <div class="col-md-6">
+        <h6>Customer Name : @ViewBag.CName</h6>
+    </div>
+  </div>
+ </div>
+ </div>
+</div>
+<br />
+
+
+
+    <div class="container-fluid">
+        <div class="card text-center">
+            <div class="card-body">
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="table">
+               
+                    <tr>
+                        
+                        <th>
+                            Product Name
+                        </th>
+                        <th>
+                            Quantity
+                        </th>
+                        
+                        <th>
+                            Total
+                        </th>
+                        <th></th>
+                    </tr>
+                
+                    @foreach (var item in Model)
+                    {
+                     <tr>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ProductName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Quantity)
+                                    </td>
+                                       <td>
+                                        @Html.DisplayFor(modelItem => item.Total)
+                                    </td>
+
+                                    </tr>
+                     
+                        }
+                                
+                
+            </table>
+
+
+        </div>
+    </div>
+</div>
+</div>
+    
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Grand Total : @ViewBag.GT</h6>
+                    </div>
+                    <div class="col-md-6">
+                    <input type="button" value="Print"/>
+                </div>
+                </div>
+            </div>
+        </div>
+    
+</div>

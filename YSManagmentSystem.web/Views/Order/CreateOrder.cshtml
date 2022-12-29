@@ -1,0 +1,110 @@
+﻿@model List<YSManagmentSystem.Domain.Order.OrderItemList>
+
+@{
+    ViewData["Title"] = "CreateOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+       
+            <div class="container-fluid">
+                <div class="card text-center">
+                    <div class="card-body">
+                <div class="row">
+                        <div class="col-md-6">
+                            <div class="container">
+                                <div style="width:90%; margin:0 auto" class="tablecontainer">
+                                    <a type="button" class="btn btn-primary" href="/Order/AddOrderItem?id=@ViewBag.id "> <i class="fa fa-plus"></i> Add Order </a>
+                                </div>
+                        </div>
+                    </div>
+                             <div class="col-md-6">
+                        <partial name="_AddNewCustomer"/>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+</div>
+
+<br />
+
+<h1>Order Item List</h1>
+
+<div class="container-fluid">
+    <div class="card text-center">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    Product Name
+                                </th>
+                                <th>
+                                    Quantity
+                                </th>
+                                <th></th>
+                                <th>Price</th>
+                                <th>
+                                    Total
+                                </th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ProductName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Quantity)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Add" asp-route-id="@item.Id" class="btn btn-sm btn-primary">+</a>
+                                        <a asp-action="Decrease" asp-route-id="@item.Id" class="btn btn-sm btn-success">-</a>
+                                        <a asp-action="Remove" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Remove</a>
+                                    </td>
+                                    <td>@item.Price</td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Total)
+                                    </td>
+                                   
+                                </tr>
+                            }
+                            <tr>
+                                 @*<td class="text-right" colspan="4">Grand Total: @Model.GrandTotal.ToString("C2")</td>*@
+                            </tr>
+                            <tr>
+                                <td class="text-right" colspan="4">
+                                    <a asp-action="Clear" class="btn btn-danger">Clear Cart</a>
+                                    <a asp-action="Checkout" class="btn btn-primary checkout">Checkout</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-center">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Grand Total : @ViewBag.tot</h6>
+                    </div>
+                    <div class="col-md-6">
+                    <input type="button" value="Print"/>
+                </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
